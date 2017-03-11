@@ -20,4 +20,4 @@ RUN apk add --update-cache curl unzip \
 
   && apk del curl unzip && rm -rf /var/cache/apk/*
 
-ENTRYPOINT consul-template -config /etc/consul_template.hcl
+ENTRYPOINT [ "consul-template", "-config", "/etc/consul_template.hcl" ]
