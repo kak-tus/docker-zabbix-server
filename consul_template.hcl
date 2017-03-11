@@ -5,5 +5,5 @@ template {
 
 exec {
   command = "zabbix_server -c /etc/zabbix/zabbix_server.conf -f"
-  splay = "5s"
+  splay = "60s"
 }
