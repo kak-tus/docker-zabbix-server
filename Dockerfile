@@ -18,6 +18,7 @@ RUN \
 
 ENV VAULT_ADDR=
 ENV VAULT_TOKEN=
+ENV DB_ADDR=
 
 COPY consul_template.hcl /etc/consul_template.hcl
 COPY zabbix_server.conf.template /root/zabbix_server.conf.template

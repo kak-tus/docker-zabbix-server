@@ -1,6 +1,6 @@
 LogType=console
 
-DBHost=db.weave.local
+DBHost={{ env "DB_ADDR" }}
 DBUser={{ with secret "secret/zabbix/db/user" }}{{ .Data.value }}{{ end }}
 DBPassword={{ with secret "secret/zabbix/db/password" }}{{ .Data.value }}{{ end }}
 DBPort=5432
