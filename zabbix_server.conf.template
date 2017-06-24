@@ -10,3 +10,5 @@ StartTrappers=1
 StartDBSyncers=1
 
 AllowRoot=1
+
+ValueCacheSize=16M
