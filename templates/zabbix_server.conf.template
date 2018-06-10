@@ -1,0 +1,49 @@
+LogType=console
+
+DBHost=
+{{- if service "db" }}
+  {{- range $s := service "db~_agent" | toJSON | plugin "rttfix" | parseJSON }}
+    {{- if not ( scratch.Key "addr1" ) }}
+      {{- scratch.Set "addr1" "1" }}
+      {{- $s.Address }}
+    {{- end }}
+  {{- end }}
+{{- else }}
+  {{- range $dc := datacenters true }}
+    {{- range $s := $dc | printf "db@%s" | service | toJSON | plugin "rttfix" | parseJSON }}
+      {{- if not ( scratch.Key "addr2" ) }}
+        {{- scratch.Set "addr2" "1" }}
+        {{- $s.Address }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+DBUser={{ with secret "secret/zabbix/db/user" }}{{ .Data.value }}{{ end }}
+DBPassword={{ with secret "secret/zabbix/db/password" }}{{ .Data.value }}{{ end }}
+DBPort=
+{{- if service "db" }}
+  {{- range $s := service "db~_agent" | toJSON | plugin "rttfix" | parseJSON }}
+    {{- if not ( scratch.Key "port1" ) }}
+      {{- scratch.Set "port1" "1" }}
+      {{- $s.Port }}
+    {{- end }}
+  {{- end }}
+{{- else }}
+  {{- range $dc := datacenters true }}
+    {{- range $s := $dc | printf "db@%s" | service | toJSON | plugin "rttfix" | parseJSON }}
+      {{- if not ( scratch.Key "port2" ) }}
+        {{- scratch.Set "port2" "1" }}
+        {{- $s.Port }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+
+StartPollers=1
+StartTrappers=1
+StartDBSyncers=1
+
+AllowRoot=1
+
+ValueCacheSize=64M

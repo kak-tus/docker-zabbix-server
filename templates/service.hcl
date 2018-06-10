@@ -1,5 +1,5 @@
 template {
-  source = "/root/zabbix_server.conf.template"
+  source = "/root/templates/zabbix_server.conf.template"
   destination = "/usr/local/etc/zabbix_server.conf.d/zabbix_server.conf"
 }
 
