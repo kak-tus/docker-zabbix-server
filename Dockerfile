@@ -1,4 +1,4 @@
-FROM zabbix/zabbix-server-pgsql:alpine-3.2.1 AS build
+FROM zabbix/zabbix-server-pgsql:alpine-3.4.10 AS build
 
 ENV \
   CONSUL_TEMPLATE_VERSION=0.19.4 \
@@ -24,7 +24,7 @@ RUN \
   && echo -n "$RTTFIX_SHA256  rttfix" | sha256sum -c - \
   && chmod +x rttfix
 
-FROM zabbix/zabbix-server-pgsql:alpine-3.2.1
+FROM zabbix/zabbix-server-pgsql:alpine-3.4.10
 
 RUN \
   echo 'Include=/usr/local/etc/zabbix_server.conf.d/*.conf' >> /etc/zabbix/zabbix_server.conf

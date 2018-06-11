@@ -41,7 +41,7 @@ DBPort=
 
 
 StartPollers=1
-StartTrappers=1
+StartTrappers=2
 StartDBSyncers=1
 
 AllowRoot=1
